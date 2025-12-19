@@ -1,0 +1,64 @@
+name: Add a Resource
+description: Suggest a new tool, article, or resource for the Awesome list.
+title: "[Resource]: <Name of the Resource>"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in contributing to Awesome RAG Production!
+        Please fill out the details below so we can review your suggestion faster.
+
+  - type: input
+    id: resource_name
+    attributes:
+      label: Resource Name
+      description: What is the name of the tool, library, or article?
+      placeholder: e.g., LangChain
+    validations:
+      required: true
+
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: The URL to the resource.
+      placeholder: https://github.com/langchain-ai/langchain
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A short description of what it does and why it's "production-grade".
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Which section does this belong to?
+      options:
+        - Frameworks & Orchestration
+        - Data Ingestion & Parsing
+        - Vector Databases
+        - Retrieval & Reranking
+        - Evaluation & Benchmarking
+        - Observability & Tracing
+        - Deployment & Serving
+        - Books & Blogs
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Submission Checklist
+      options:
+        - label: I have searched the existing resources to ensure this is not a duplicate.
+          required: true
+        - label: This resource is actively maintained (updated in the last 6 months).
+          required: true
