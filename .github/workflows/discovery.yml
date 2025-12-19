@@ -1,0 +1,38 @@
+name: Weekly RAG Discovery
+
+on:
+  schedule:
+    # 06:00 UTC, Türkiye saatiyle (UTC+3) sabah 09:00'a denk gelir.
+    - cron: '0 6 * * 1'
+  workflow_dispatch: # İstersen butona basıp manuel de çalıştırabilirsin
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Repoya dosya yazabilmesi için gerekli izin
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r scrpt/requirements.txt
+
+      - name: Run Discovery Engine
+        run: |
+          python scrpt/discovery_engine.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add PROPOSED_UPDATES.md
+          git commit -m "Auto-update: Weekly RAG discovery results" || echo "No changes to commit"
+          git push
