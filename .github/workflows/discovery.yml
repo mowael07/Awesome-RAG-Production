@@ -26,6 +26,8 @@ jobs:
           pip install -r scripts/requirements.txt
 
       - name: Run Discovery Engine
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python scripts/discovery_engine.py
 

@@ -1,48 +1,76 @@
 import requests
-from bs4 import BeautifulSoup
 import datetime
+import os
 
 def run_discovery():
     """
-    Scrapes GitHub topics to find trending RAG projects.
-    Outputs a formatted markdown list for easy integration.
+    Fetches trending RAG projects from GitHub API with quality filters.
+    Filters:
+    - Topic: RAG
+    - Stars: > 100 (Quality threshold)
+    - Last Push: Within last 90 days (Freshness threshold)
     """
-    URL = "https://github.com/topics/rag"
-    HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+    # Configuration
+    MIN_STARS = 100
+    DAYS_LIMIT = 90
+    GITHUB_TOKEN = os.getenv("GITHUB_TOKEN") # Optional, increases rate limits
     
-    print(f"[*] Initiating discovery at: {URL}")
+    # Calculate date threshold
+    cutoff_date = (datetime.datetime.now() - datetime.timedelta(days=DAYS_LIMIT)).strftime("%Y-%m-%d")
+    
+    # Construct API Query: topic:rag + stars:>=100 + pushed:>=2024-XX-XX
+    query = f"topic:rag stars:>={MIN_STARS} pushed:>={cutoff_date}"
+    URL = "https://api.github.com/search/repositories"
+    params = {
+        "q": query,
+        "sort": "stars",
+        "order": "desc",
+        "per_page": 15  # Get top 15 results
+    }
+    
+    headers = {"Accept": "application/vnd.github.v3+json"}
+    if GITHUB_TOKEN:
+        headers["Authorization"] = f"token {GITHUB_TOKEN}"
+
+    print(f"[*] Initiating Smart Discovery...")
+    print(f"    - Filter: Stars >= {MIN_STARS}")
+    print(f"    - Filter: Updated after {cutoff_date}")
+
     try:
-        response = requests.get(URL, headers=HEADERS, timeout=10)
+        response = requests.get(URL, headers=headers, params=params, timeout=10)
         response.raise_for_status()
+        data = response.json()
+        projects = data.get("items", [])
     except Exception as e:
-        print(f"[-] Critical Error: {e}")
+        print(f"[-] Critical Error impacting discovery: {e}")
         return
 
-    soup = BeautifulSoup(response.text, 'html.parser')
-    projects = soup.find_all('article', class_='border rounded color-shadow-small color-bg-subtle my-4')
-
-    with open("../PROPOSED_UPDATES.md", "w", encoding="utf-8") as f:
-        f.write(f"# Proposed RAG Updates - {datetime.date.today()}\n")
-        f.write("> Review these resources before adding them to the main README.\n\n")
+    # Write results
+    output_file = "../PROPOSED_UPDATES.md"
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write(f"# 🚀 Smart RAG Discovery - {datetime.date.today()}\n")
+        f.write(f"> **Filters Applied:** Stars >= {MIN_STARS}, Updated in last {DAYS_LIMIT} days.\n\n")
+        f.write("| Project | Stars | Description | Last Update |\n")
+        f.write("| :--- | :--- | :--- | :--- |\n")
         
-        for project in projects:
-            title_tag = project.find('a', class_='text-bold')
-            if not title_tag: continue
+        count = 0
+        for p in projects:
+            name = p['name']
+            url = p['html_url']
+            desc = p['description'] or "No description provided."
+            stars = p['stargazers_count']
+            updated_at = p['updated_at'].split("T")[0]
             
-            path = title_tag.get('href').strip()
-            link = f"https://github.com{path}"
-            name = path.split('/')[-1]
+            # Clean description for markdown table (remove pipes)
+            desc = desc.replace("|", "-").replace("\n", " ")
+            if len(desc) > 100: desc = desc[:97] + "..."
 
-            desc_tag = project.find('p', class_='color-fg-muted')
-            desc = desc_tag.text.strip() if desc_tag else "No description provided."
+            f.write(f"| **[{name}]({url})** | ⭐ {stars} | {desc} | {updated_at} |\n")
+            print(f"[+] Found: {name} ({stars} stars) - Updated: {updated_at}")
+            count += 1
 
-            star_tag = project.find('span', id='repo-stars-counter-star')
-            stars = star_tag.text.strip() if star_tag else "0"
-
-            f.write(f"* **[{name}]({link})** - {desc} (⭐ {stars})\n")
-            print(f"[+] Discovered: {name}")
-
-    print("\n[!] Success! Check 'PROPOSED_UPDATES.md' for the results.")
+    print(f"\n[!] Success! found {count} high-quality RAG projects.")
+    print(f"    Results written to '{output_file}'")
 
 if __name__ == "__main__":
     run_discovery()
