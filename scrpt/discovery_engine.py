@@ -21,7 +21,7 @@ def run_discovery():
     soup = BeautifulSoup(response.text, 'html.parser')
     projects = soup.find_all('article', class_='border rounded color-shadow-small color-bg-subtle my-4')
 
-    with open("PROPOSED_UPDATES.md", "w", encoding="utf-8") as f:
+    with open("../PROPOSED_UPDATES.md", "w", encoding="utf-8") as f:
         f.write(f"# Proposed RAG Updates - {datetime.date.today()}\n")
         f.write("> Review these resources before adding them to the main README.\n\n")
         
