@@ -1,0 +1,16 @@
+title: "[Showcase]: "
+labels: ["show-and-tell"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Built something cool with RAG?**
+        Show off your project, demo, or blog post here.
+  - type: textarea
+    id: showcase
+    attributes:
+      label: Project Description
+      description: Tell us about what you built.
+      placeholder: "I built a RAG pipeline that processes legal contracts..."
+    validations:
+      required: true
