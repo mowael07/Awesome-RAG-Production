@@ -62,14 +62,51 @@ graph TD
 
 ---
 
+## 🧱 Reference Architectures
+
+Stop guessing. Here are three battle-tested stacks for different stages of maturity.
+
+### 1. The Local / Dev Stack (Zero to One)
+* **Goal:** Rapid prototyping, zero cost, no API keys.
+* **Stack:**
+  * **LLM:** [Ollama](https://github.com/ollama/ollama) (Llama 3 / Mistral)
+  * **Vector DB:** [Chroma](https://github.com/chroma-core/chroma) (Embedded)
+  * **Eval:** [Ragas](https://github.com/explodinggradients/ragas) (Basic checks)
+* **Why:** Runs entirely on your laptop. Perfect for "Hello World" and checking feasibility.
+* **Risks:** High latency; performance depends on your hardware; no horizontal scaling.
+* **Observability Checklist:** `print()` statements and basic logging.
+
+### 2. The Mid-Scale / Production Stack (Speed to Market)
+* **Goal:** High precision, developer velocity, minimal infra management.
+* **Stack:**
+  * **Vector DB:** [Qdrant](https://github.com/qdrant/qdrant) or [Weaviate](https://github.com/weaviate/weaviate) (Cloud/Managed)
+  * **Reranker:** [Cohere Rerank](https://cohere.com/rerank) (API)
+  * **Tracing:** [Langfuse](https://github.com/langfuse/langfuse) or [Arize Phoenix](https://github.com/Arize-ai/phoenix)
+* **Why:** Offloads complexity to managed services. "It just works" with great documentation.
+* **Risks:** Costs scale linearly with usage; dependency on external APIs (Vendor lock-in).
+* **Observability Checklist:** Latency tracking, Token usage costs, Trace visualization.
+
+### 3. The Enterprise / High-Scale Stack (The 1%)
+* **Goal:** Throughput maximization, data sovereignty, full control.
+* **Stack:**
+  * **Vector DB:** [Milvus](https://github.com/milvus-io/milvus) (Distributed)
+  * **Serving:** [vLLM](https://github.com/vllm-project/vllm) (Self-hosted)
+  * **Eval (CI/CD):** [DeepEval](https://github.com/confident-ai/deepeval)
+  * **Monitoring:** [OpenLIT](https://github.com/openlit/openlit) (OpenTelemetry)
+* **Why:** You own the data and the compute. Scales to billions of vectors.
+* **Risks:** Significant operational complexity (Kubernetes); requires a dedicated Platform Engineering team.
+* **Observability Checklist:** Distributed tracing, Embedding drift detection, Custom SLA alerts, GPU utilization metrics.
+
+---
+
 ## 🏗️ Frameworks & Orchestration
-* **[LangGraph](https://github.com/langchain-ai/langgraph)** - Best for complex, agentic RAG orchestration with human-in-the-loop controls.
-* **[Haystack](https://github.com/deepset-ai/haystack)** - Focused on measurable, auditable, and reproducible RAG pipelines.
-* **[LlamaIndex](https://github.com/run-llama/llama_index)** - The standard for retrieval and indexing ergonomics.
-* **[RAGFlow](https://github.com/infiniflow/ragflow)** - Deep document understanding engine (PDFs, tables) for complex data pipelines.
-* **[Cognita](https://github.com/truefoundry/cognita)** - Modular, production-ready RAG framework by TrueFoundry.
-* **[Verba](https://github.com/weaviate/Verba)** - The "Golden RAGtriever" - a customizable, out-of-the-box RAG application.
-* **[Pathway](https://github.com/pathwaycom/pathway)** - High-performance framework for streaming and operational RAG deployment.
+* **[LangGraph](https://github.com/langchain-ai/langchain)** - A library for building stateful, multi-actor applications with LLMs. Unlike simple chains, it enables cyclic graphs for complex, agentic workflows with human-in-the-loop control and persistence.
+* **[Haystack](https://github.com/deepset-ai/haystack)** - A modular framework focused on production readiness. It emphasizes audible pipelines, strict type-checking, and reproducibility, making it ideal for enterprise-grade RAG where reliability is paramount.
+* **[LlamaIndex](https://github.com/run-llama/llama_index)** - The premier data framework for LLMs. It excels at connecting custom data sources to LLMs, offering advanced indexing strategies (like recursive retrieval) and optimized query engines for deep insight extraction.
+* **[RAGFlow](https://github.com/infiniflow/ragflow)** - An end-to-end RAG engine designed for deep document understanding. It handles complex layouts (PDFs, tables, images) natively and includes a built-in knowledge base management system.
+* **[Cognita](https://github.com/truefoundry/cognita)** - A modular RAG framework by TrueFoundry designed for scalability. It decouples the RAG components (Indexer, Retriever, Parser), allowing for independent scaling and easier AB testing of different RAG strategies.
+* **[Verba](https://github.com/weaviate/Verba)** - Weaviate's "Golden RAGtriever". A fully aesthetic, open-source RAG web application that comes pre-configured with best practices for chunking, embedding, and retrieval out of the box.
+* **[Pathway](https://github.com/pathwaycom/pathway)** - A high-performance data processing framework for live data. It enables "Always-Live" RAG by syncing vector indices in real-time as the underlying data source changes, without full re-indexing.
 
 
 ## 📥 Data Ingestion & Parsing
@@ -92,34 +129,42 @@ graph TD
 
 
 ## 🔍 Retrieval & Reranking
-* **Hybrid Search:** Combining dense vector search (semantic) with sparse retrieval (BM25) to capture both context and exact tokens.
-* **[Cohere Rerank](https://cohere.com/rerank)** - The highest value "5 lines of code" to improve precision by reranking top-k results.
-* **[BGE-Reranker](https://huggingface.co/BAAI/bge-reranker-v2-m3)** - State-of-the-art open-source reranking models.
-* **[RAGatouille](https://github.com/bclavie/RAGatouille)** - Use ColBERT (State-of-the-art interaction-based retrieval) with ease.
-* **[FlashRank](https://github.com/PrithivirajDamodaran/FlashRank)** - Ultra-lightweight (no torch) reranking/retrieval for edge and serverless.
-* **GraphRAG:** Using knowledge graphs to pull related entities and paths for deep-context retrieval.
+* **Hybrid Search:** A retrieval strategy that linearly combines Dense Vector Search (semantic understanding) with Sparse Keyword Search (BM25 for exact term matching). This mitigates the "lost in the middle" phenomenon and significantly improves zero-shot retrieval performance.
+* **[Cohere Rerank](https://cohere.com/rerank)** - A powerful API-based reranking model. By re-scoring the initial top-K documents from a cheaper/faster retriever, it drastically improves precision (often boosting MRR by 10-20%) with minimal code changes.
+* **[BGE-Reranker](https://huggingface.co/BAAI/bge-reranker-v2-m3)** - One of the best open-source rerankers available. It is a cross-encoder model trained to output a relevance score for query-document pairs, offering commercial-grade performance for self-hosted pipelines.
+* **[RAGatouille](https://github.com/bclavie/RAGatouille)** - A library that makes ColBERT (Contextualized Late Interaction over BERT) easy to use. ColBERT offers fine-grained token-level matching, providing superior retrieval quality compared to standard single-vector dense retrieval.
+* **[FlashRank](https://github.com/PrithivirajDamodaran/FlashRank)** - A lightweight, serverless-friendly reranking library. It runs quantized cross-encoder models directly in the CPU (no Torch/GPU required), making it ideal for edge deployments or cost-sensitive architectures.
+* **GraphRAG:** An advanced retrieval method that constructs a knowledge graph from documents. It traverses relationships between entities to answer "global" queries (e.g., "What are the main themes?") that standard vector search struggles to address.
 
 
 ## 📊 Evaluation & Benchmarking
 Reliable RAG requires measuring the **RAG Triad**: Context Relevance, Groundedness, and Answer Relevance.
-* **[Ragas](https://github.com/explodinggradients/ragas)** - Reference-free evaluation metrics (Faithfulness, Answer Relevancy).
-* **[DeepEval](https://github.com/confident-ai/deepeval)** - Open-source evaluation with CI/CD integration for regression testing.
-* **[Ares](https://github.com/ares-ai/ares)** - Automated RAG evaluation system with conformal prediction.
-* **[Braintrust](https://www.braintrust.dev/)** - Unique production-to-evaluation feedback loop.
+* **[Ragas](https://github.com/explodinggradients/ragas)** - A framework that uses an "LLM-as-a-Judge" to evaluate your pipeline. It calculates metrics like Faithfulness (did the answer come from the context?) and Answer Relevancy without needing human-labeled ground truth.
+* **[DeepEval](https://github.com/confident-ai/deepeval)** - The "Pytest for LLMs". It offers a unit-testing framework for RAG, integrating seamlessly into CI/CD pipelines to catch regression in retrieval quality or hallucination rates before deployment.
+* **[Ares](https://github.com/ares-ai/ares)** - An automated evaluation system that helps you evaluate RAG systems with fewer human labels. It uses prediction-powered inference to provide statistical confidence intervals for your system's performance.
+* **[Braintrust](https://www.braintrust.dev/)** - An enterprise-grade platform for evaluating and logging LLM outputs. It excels at "Online Evaluation," allowing you to score real-world user interactions and feed that data back into your development set.
 
 
 ## 👁️ Observability & Tracing
-* **[Langfuse](https://github.com/langfuse/langfuse)** - Open-source tracing, prompt management, and analytics for LLM apps.
-* **[Arize Phoenix](https://github.com/Arize-ai/phoenix)** - Open-source retrieval analysis and debugging.
-* **[LangSmith](https://www.langchain.com/langsmith)** - Deep integration with the LangChain ecosystem for full-stack observability.
-* **[OpenLIT](https://github.com/openlit/openlit)** - OpenTelemetry-native observability for LLM output (traces, metrics).
+* **[Langfuse](https://github.com/langfuse/langfuse)** - An open-source engineering platform for LLM observability. It captures full execution traces (latency, token usage, cost) and allows for "Prompt Management," letting you version-control prompts decoupled from your code.
+* **[Arize Phoenix](https://github.com/Arize-ai/phoenix)** - A tool specifically designed for troubleshooting retrieval issues. It visualizes your embedding clusters and retrieved document rankings, helping you understand *why* the model retrieved irrelevant context.
+* **[LangSmith](https://www.langchain.com/langsmith)** - Built by the LangChain team, this is the gold standard for debugging complex chains. It provides a "Playground" to rerun specific traces with modified prompts to iterate on edge cases instantly.
+* **[OpenLIT](https://github.com/openlit/openlit)** - An OpenTelemetry-native monitoring solution. If you already use Prometheus/Grafana or Datadog, OpenLIT drops into your existing stack to provide standardized LLM metrics (GPU usage, token throughput).
 
 
 ## 🚀 Deployment & Serving
-* **[BentoML](https://github.com/bentoml/BentoML)** - Standard for model serving and high-performance API creation.
-* **[Ray Serve](https://github.com/ray-project/ray)** - Scalable serving for complex multi-model pipelines.
-* **[vLLM](https://github.com/vllm-project/vllm)** - High-throughput and memory-efficient LLM inference and serving.
-* **[Ollama](https://github.com/ollama/ollama)** - Run Llama 3, Mistral, Gemma, and other large language models locally.
+* **[BentoML](https://github.com/bentoml/BentoML)** - A framework for packaging models into standardized APIs (Bentos). It handles the complexity of adaptive batching and multi-model serving, allowing you to deploy any model to any cloud (AWS Lambda, EC2, K8s) with one command.
+* **[Ray Serve](https://github.com/ray-project/ray)** - The industry standard for scaling Python ML workloads. It allows you to compose complex pipelines (e.g., Retriever + Reranker + LLM) where each component scales independently across a cluster of machines.
+* **[vLLM](https://github.com/vllm-project/vllm)** - A high-performance inference engine known for PagedAttention. It maximizes GPU memory utilization, allowing you to serve larger models or handle higher concurrency with lower latency than standard HuggingFace Transformes.
+* **[Ollama](https://github.com/ollama/ollama)** - The easiest way to run LLMs locally. While primarily for dev/local use, it bridges the gap between local testing and deployment by providing a standard API for models like Llama 3, Mistral, and Gemma.
+
+
+## 🛡️ Security & Compliance
+* **[NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails)** - The standard for adding programmable guardrails to LLM-based conversational systems. It prevents "Jailbreaking" and ensures models stay on topic, critical for enterprise chatbots.
+* **[Lakera Guard](https://www.lakera.ai/)** - A low-latency security API that protects applications against prompt injections, data leakage, and toxic content in real-time. It acts as an "Application Firewall" for your LLM.
+* **[Presidio](https://github.com/microsoft/presidio)** - Microsoft’s SDK for PII (Personally Identifiable Information) detection and redaction. It ensures sensitive user data (credit cards, emails) is scrubbed *before* it hits the embedding model or vector DB.
+* **[LLM Guard](https://github.com/protectai/llm-guard)** - A comprehensive toolkit for sanitizing inputs and outputs. It detects invisible text, prompt injections, and anonymizes sensitive data, ensuring full compliance with data privacy standards.
+* **[PrivateGPT](https://github.com/zylon-ai/private-gpt)** - A production-ready project that allows you to run RAG pipelines completely offline. It ensures 100% data privacy by keeping all ingestion and inference local, perfect for highly regulated industries.
 
 
 ## 🧠 Recommended Resources
