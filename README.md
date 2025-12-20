@@ -71,7 +71,6 @@ graph TD
 * **[Verba](https://github.com/weaviate/Verba)** - The "Golden RAGtriever" - a customizable, out-of-the-box RAG application.
 * **[Pathway](https://github.com/pathwaycom/pathway)** - High-performance framework for streaming and operational RAG deployment.
 
-<p align="right">(<a href="#contents">back to top</a>)</p>
 
 ## 📥 Data Ingestion & Parsing
 * **[Unstructured](https://github.com/Unstructured-IO/unstructured)** - Open-source pipelines for preprocessing complex, unstructured data.
@@ -80,7 +79,6 @@ graph TD
 * **[Marker](https://github.com/VikParuchuri/marker)** - High-efficiency PDF, EPUB to Markdown converter using vision models.
 * **[OmniParse](https://github.com/adithya-s-k/omniparse)** - Universal parser for ingesting any data type (documents, multimedia, web) into RAG-ready formats.
 
-<p align="right">(<a href="#contents">back to top</a>)</p>
 
 ## 🗄️ Vector Databases
 | Tool | Best For | Key Strength |
@@ -92,7 +90,6 @@ graph TD
 | **[Chroma](https://github.com/chroma-core/chroma)** | Local/Dev & Mid-scale | Developer-friendly, open-source embedding database. |
 | **[pgvector](https://github.com/pgvector/pgvector)** | Postgres Ecosystem | Vector search capability directly within PostgreSQL. |
 
-<p align="right">(<a href="#contents">back to top</a>)</p>
 
 ## 🔍 Retrieval & Reranking
 * **Hybrid Search:** Combining dense vector search (semantic) with sparse retrieval (BM25) to capture both context and exact tokens.
@@ -102,7 +99,6 @@ graph TD
 * **[FlashRank](https://github.com/PrithivirajDamodaran/FlashRank)** - Ultra-lightweight (no torch) reranking/retrieval for edge and serverless.
 * **GraphRAG:** Using knowledge graphs to pull related entities and paths for deep-context retrieval.
 
-<p align="right">(<a href="#contents">back to top</a>)</p>
 
 ## 📊 Evaluation & Benchmarking
 Reliable RAG requires measuring the **RAG Triad**: Context Relevance, Groundedness, and Answer Relevance.
@@ -111,7 +107,6 @@ Reliable RAG requires measuring the **RAG Triad**: Context Relevance, Groundedne
 * **[Ares](https://github.com/ares-ai/ares)** - Automated RAG evaluation system with conformal prediction.
 * **[Braintrust](https://www.braintrust.dev/)** - Unique production-to-evaluation feedback loop.
 
-<p align="right">(<a href="#contents">back to top</a>)</p>
 
 ## 👁️ Observability & Tracing
 * **[Langfuse](https://github.com/langfuse/langfuse)** - Open-source tracing, prompt management, and analytics for LLM apps.
@@ -119,7 +114,6 @@ Reliable RAG requires measuring the **RAG Triad**: Context Relevance, Groundedne
 * **[LangSmith](https://www.langchain.com/langsmith)** - Deep integration with the LangChain ecosystem for full-stack observability.
 * **[OpenLIT](https://github.com/openlit/openlit)** - OpenTelemetry-native observability for LLM output (traces, metrics).
 
-<p align="right">(<a href="#contents">back to top</a>)</p>
 
 ## 🚀 Deployment & Serving
 * **[BentoML](https://github.com/bentoml/BentoML)** - Standard for model serving and high-performance API creation.
@@ -127,7 +121,6 @@ Reliable RAG requires measuring the **RAG Triad**: Context Relevance, Groundedne
 * **[vLLM](https://github.com/vllm-project/vllm)** - High-throughput and memory-efficient LLM inference and serving.
 * **[Ollama](https://github.com/ollama/ollama)** - Run Llama 3, Mistral, Gemma, and other large language models locally.
 
-<p align="right">(<a href="#contents">back to top</a>)</p>
 
 ## 🧠 Recommended Resources
 
@@ -141,7 +134,6 @@ A curated list of **[Essential Books](books.md)** covering RAG, Deep Learning, a
 Stay updated with the **[Best Engineering Blogs](blogs.md)**.
 - *Featuring: OpenAI Research, Google DeepMind, and NVIDIA AI.*
 
-<p align="right">(<a href="#contents">back to top</a>)</p>
 
 ---
 
