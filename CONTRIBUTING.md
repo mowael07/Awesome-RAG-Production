@@ -22,17 +22,22 @@ We don't just collect links; we curate **engineering excellence**. To be accepte
 Please follow these steps to propose a change:
 
 ### 1. Search First
+
 Before adding a new resource, please check if it is already in the list or if a similar PR is already open.
 
 ### 2. Fork and Branch
+
 1.  Fork the repository.
 2.  Create a new branch from `main`:
+
     ```bash
     git checkout -b add-[resource-name]
     ```
 
 ### 3. Formatting Rules
+
 To keep the list clean, please follow the existing format:
+
 -   **Alphabetical Order:** Add your resource to the appropriate category in alphabetical order.
 -   **Link Format:** `- [Resource Name](URL) - Short, descriptive sentence (1 sentence) ending with a period.`
 -   **Citations (Optional):** If the resource is backed by a specific benchmark or paper, feel free to mention it.
@@ -47,8 +52,8 @@ git commit -m "Add [Resource Name] to [Category Name]"
 
 ### 5. Open a Pull Request
 
-* Fill out the PR template (if available).
-* Explain **why** this resource is "Awesome" and how it helps in a production environment.
+-   Fill out the PR template (if available).
+-   Explain **why** this resource is "Awesome" and how it helps in a production environment.
 
 ---
 
