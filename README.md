@@ -11,22 +11,28 @@
 
 </div>
 
-> A curated collection of battle-tested tools, frameworks, and best practices for building, scaling, and monitoring production-grade Retrieval-Augmented Generation (RAG) systems.
+> A curated collection of battle-tested tools, frameworks, and best practices for
+> building, scaling, and monitoring production-grade
+> Retrieval-Augmented Generation (RAG) systems.
 
-The transition from a "Hello World" RAG tutorial to a scalable, reliable production system is filled with challenges—from data parsing at scale to ensuring retrieval precision and system observability. This repository focuses on the **Engineering** side of AI.
+The transition from a "Hello World" RAG tutorial to a scalable, reliable
+production system is filled with challenges—from data parsing at scale to
+ensuring retrieval precision and system observability. This repository focuses
+on the **Engineering** side of AI.
 
-Contribution Guide · [Explore Categories](#contents) · [Report Bug](https://github.com/Yigtwxx/Awesome-RAG-Production/issues)
+Contribution Guide · [Explore Categories](#-contents) · [Report Bug](https://github.com/Yigtwxx/Awesome-RAG-Production/issues)
 
 ---
 
 ## 📑 Contents
-- [Frameworks & Orchestration](#frameworks--orchestration)
-- [Data Ingestion & Parsing](#data-ingestion--parsing)
-- [Vector Databases](#vector-databases)
-- [Retrieval & Reranking](#retrieval--reranking)
-- [Evaluation & Benchmarking](#evaluation--benchmarking)
-- [Observability & Tracing](#observability--tracing)
-- [Deployment & Serving](#deployment--serving)
+
+- [Frameworks & Orchestration](#-frameworks--orchestration)
+- [Data Ingestion & Parsing](#-data-ingestion--parsing)
+- [Vector Databases](#-vector-databases)
+- [Retrieval & Reranking](#-retrieval--reranking)
+- [Evaluation & Benchmarking](#-evaluation--benchmarking)
+- [Observability & Tracing](#-observability--tracing)
+- [Deployment & Serving](#-deployment--serving)
 - [Recommended Resources (Books & Blogs)](#-recommended-resources)
 
 ---
