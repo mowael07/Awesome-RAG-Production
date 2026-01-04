@@ -33,8 +33,8 @@ Before choosing a model, check these live leaderboards:
 ## 🧪 Synthetic Data Generation
 
 Don't have a dataset? Generate one from your own internal documents.
-- **[Ragas Synthetic Data Generator](https://docs.ragas.io/en/stable/concepts/testset_generation.html)** - create "Golden Datasets" (Question-Answer-Context triples) automatically.
-- **[LlamaIndex Data Generator](https://docs.llamaindex.ai/en/stable/module_guides/evaluator/usage_pattern.html)** - Built-in utils to generate questions from your indexed nodes.
+- **[Ragas Synthetic Data Generator](https://docs.ragas.io/)** - create "Golden Datasets" (Question-Answer-Context triples) automatically.
+- **[LlamaIndex Data Generator](https://docs.llamaindex.ai/)** - Built-in utils to generate questions from your indexed nodes.
 
 ---
 
