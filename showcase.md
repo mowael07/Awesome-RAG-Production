@@ -61,8 +61,7 @@ running Retrieval-Augmented Generation at scale.
 
 ## 📹 Must-Watch Talks
 
-- **[Building RAG at Enterprise Scale (NVIDIA)](https://www.youtube.com/watch?v=1F2b6k32b3U)**
-  - Focus on security and governance.
+
 
 
 ---
