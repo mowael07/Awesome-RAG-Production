@@ -37,7 +37,7 @@ A curated collection of essential books for Retrieval Augmented Generation (RAG)
 - **[The LLM Engineering Handbook](https://www.packtpub.com/product/the-llm-engineering-handbook/9781836200079)**
   - Paul Iusztin, Maxime Labonne (2024). A practical guide for building,
     deploying, and scaling large language model-based applications.
-- **[Generative AI with LangChain](https://www.amazon.com/Generative-LangChain-Build-models-applications/dp/1835083464)**
+- **[Generative AI with LangChain](https://www.packtpub.com/product/generative-ai-with-langchain-9781835083468)**
   - Ben Auffarth (2024). Build large language model applications with Python,
     ChatGPT, and other LLMs.
 

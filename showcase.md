@@ -19,9 +19,9 @@ running Retrieval-Augmented Generation at scale.
 
 ### **[Notion AI](https://www.notion.so/)**
 
-- **[Design & Engineering behind Notion AI](https://www.notion.com/blog/how-we-built-notion-ai)**
+- **[Notion AI](https://www.notion.com/product/ai)**
   - How Notion integrated RAG into a collaborative workspace with millions of non-technical users.
-  - *Key Takeaways:* Privacy-first architecture, context window management for large docs.
+  - *Key Takeaways:* AI-powered workspace with agents, search, and knowledge management.
 
 ### **[Discord](https://discord.com/)**
 
