@@ -13,7 +13,7 @@ Before choosing a model, check these live leaderboards:
 - **[MTEB (Massive Text Embedding Benchmark)](https://huggingface.co/spaces/mteb/leaderboard)**
   - The gold standard for choosing an embedding model (Retrieval, Clustering,
     Reranking quality).
-- **[Open Compass](https://opencompass.org.cn/leaderboard-llm)**
+- **[Open Compass](https://huggingface.co/spaces/opencompass/open_llm_leaderboard)**
   - Comprehensive LLM evaluation which includes retrieving capabilities.
 - **[Hugging Face Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)**
   - General LLM performance.
